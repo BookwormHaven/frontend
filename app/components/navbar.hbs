@@ -1,0 +1,38 @@
+<nav class='navbar navbar-expand-lg navbar-light bg-light w-100'>
+  <div class='container-fluid'>
+    <LinkTo @route='index' class='navbar-brand navbar__link--brand'>
+      Bookworm Haven
+    </LinkTo>
+
+    <button
+      class='navbar-toggler'
+      type='button'
+      data-bs-toggle='collapse'
+      data-bs-target='#navbarSupportedContent'
+      aria-controls='navbarSupportedContent'
+      aria-expanded='false'
+      aria-label='Toggle navigation'
+      {{on 'click' this.toggleMenu}}
+    >
+      <span class='navbar-toggler-icon'></span>
+    </button>
+
+    <div
+      class='{{if this.isCollapsed "collapse"}} navbar-collapse'
+      id='navbarSupportedContent'
+    >
+      <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
+        <li class='nav-item' {{on 'click' this.closeMenu}}>
+          <LinkTo @route='index' class='nav-link navbar__link--index'>
+            Home
+          </LinkTo>
+        </li>
+        <li class='nav-item' {{on 'click' this.closeMenu}}>
+          <LinkTo @route='add-book' class='nav-link navbar__link--add'>
+            Add a book
+          </LinkTo>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
