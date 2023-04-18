@@ -1,0 +1,21 @@
+<PreviewList @heading='Recommended Books'>
+  {{#each @model.preview as |preview|}}
+    <BookPreview @title={{preview.title}} @author={{preview.author}} />
+  {{/each}}
+</PreviewList>
+
+<div class='container-sm mb-5'>
+  <div class='d-flex flex-column'>
+    <p>
+      Have a book to share? Add your book to our collection!
+    </p>
+    <LinkTo @route='add-book' class='btn btn-warning justify-self-start'>Share a
+      book</LinkTo>
+  </div>
+</div>
+
+<PreviewList @heading='Our Collection'>
+  {{#each @model.collection as |collection|}}
+    <BookPreview @title={{collection.title}} @author={{collection.author}} />
+  {{/each}}
+</PreviewList>

@@ -2,7 +2,17 @@
 // @import '../../node_modules/bootstrap/scss/bootstrap';
 @import 'bootstrap/bootstrap';
 
+.preview-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(250px, 1fr));
+  grid-auto-rows: auto;
+  gap: 10px;
+
+  @media only screen and (max-width: 992px) {
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+  }
+}
+
 .book-preview {
   background-color: $white;
-  width: 200px;
 }
