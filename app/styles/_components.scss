@@ -1,0 +1,8 @@
+// To be replaced with import from npm in future: https://github.com/ember-cli/ember-cli/issues/8524
+// @import '../../node_modules/bootstrap/scss/bootstrap';
+@import 'bootstrap/bootstrap';
+
+.book-preview {
+  background-color: $white;
+  width: 200px;
+}
