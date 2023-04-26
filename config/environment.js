@@ -43,5 +43,6 @@ module.exports = function (environment) {
     // here you can enable a production-specific feature
   }
 
+  ENV.APP.API_BASE_URL = process.env.API_BASE_URL;
   return ENV;
 };
