@@ -1,0 +1,76 @@
+{{#if this.isLoading}}
+  <p>Loading...</p>
+{{else}}
+  <ErrorMessage @msg={{this.errorMessage}} />
+{{/if}}
+
+<form {{on 'submit' this.onSubmit}}>
+
+  <div class='mb-3'>
+    <label for='add-title' class='form-label'>Title</label>
+    <input
+      type='text'
+      class='form-control'
+      id='add-title'
+      placeholder="Harry Potter and the Philosopher's Stone"
+    />
+  </div>
+  <div class='mb-3'>
+    <label for='add-publisher' class='form-label'>Publisher</label>
+    <input
+      type='text'
+      class='form-control'
+      id='add-publisher'
+      placeholder='Bloomsbury'
+    />
+  </div>
+
+  <div class='mb-3'>
+    <label for='add-year' class='form-label'>Year</label>
+    <input
+      type='number'
+      min='0'
+      max={{this.currentYear}}
+      step='1'
+      value={{this.currentYear}}
+      class='form-control'
+      id='add-year'
+    />
+  </div>
+
+  <div class='mb-3'>
+    <label for='add-author-select' class='form-label'>Author</label>
+    <select
+      class='form-select'
+      aria-label='Select author'
+      id='add-author-select'
+      {{on 'change' this.updateBiographyStatus}}
+    >
+      <option value='x' selected>Select author</option>
+      {{#each @authors as |author|}}
+        <option value={{author.id}}>{{author.name}}</option>
+      {{/each}}
+      <option value='other'>Other</option>
+    </select>
+  </div>
+
+  {{#if this.requireBiography}}
+    <div class='mb-3'>
+      <label for='add-author-name' class='form-label'>Author's Name</label>
+      <input
+        type='text'
+        class='form-control'
+        id='add-author-name'
+        placeholder='J.K. Rowling'
+      />
+    </div>
+
+    <div class='mb-3'>
+      <label for='add-author-bio' class='form-label'>Author's Biography</label>
+      <textarea class='form-control' id='add-author-bio' rows='3'></textarea>
+    </div>
+  {{/if}}
+
+  <button type='submit' class='btn btn-primary'>Submit</button>
+
+</form>

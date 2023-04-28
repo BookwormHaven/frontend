@@ -2,7 +2,7 @@
   <div class='container-fluid py-2 px-5'>
     <div class='d-flex align-items-center'>
       <img
-        src='img/book.png'
+        src='/img/book.png'
         alt='Bookworm Haven Icon'
         class='navbar__icon pe-2'
       />
@@ -35,7 +35,7 @@
           </LinkTo>
         </li>
         <li class='nav-item' {{on 'click' this.closeMenu}}>
-          <LinkTo @route='add-book' class='nav-link navbar__link--add'>
+          <LinkTo @route='books.add' class='nav-link navbar__link--add'>
             Add a book
           </LinkTo>
         </li>

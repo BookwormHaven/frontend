@@ -1,7 +1,11 @@
 <PreviewList @heading='Our Collection'>
   {{#if @model}}
     {{#each @model as |collection|}}
-      <BookPreview @title={{collection.title}} @author={{collection.author}} />
+      <BookPreview
+        @title={{collection.title}}
+        @author={{collection.author}}
+        @id={{collection.id}}
+      />
     {{/each}}
   {{else}}
     <p>
@@ -18,7 +22,7 @@
     <p>
       Have a book to share? Add your book to our collection!
     </p>
-    <LinkTo @route='add-book' class='btn btn-warning justify-self-start'>Share a
-      book</LinkTo>
+    <LinkTo @route='books.add' class='btn btn-warning justify-self-start'>Share
+      a book</LinkTo>
   </div>
 </div>
