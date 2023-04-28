@@ -2,8 +2,9 @@
   <div class='card-body'>
     <h5 class='card-title ellipsis ellipsis-1'>{{@title}}</h5>
     <h6 class='card-subtitle mb-2 text-muted'>{{@author.name}}</h6>
-    <p
-      class='card-text text-muted ellipsis ellipsis-3'
-    >{{@author.biography}}</p>
+    <p class='card-text text-muted ellipsis ellipsis-3'>{{#if
+        @author.biography
+      }}{{@author.biography}}{{else}}Biography not available.{{/if}}
+    </p>
   </div>
 </li>

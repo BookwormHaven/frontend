@@ -7,6 +7,7 @@ export default class IndexRoute extends Route {
     const { API_BASE_URL } = ENV.APP;
     const requestUrl = new URL(`${API_BASE_URL}/books`);
     requestUrl.searchParams.append('filter[include]', 'author');
+    requestUrl.searchParams.append('filter[order]', 'title ASC');
     const data = await axios
       .get(requestUrl.toString())
       .then((res) => res.data)
