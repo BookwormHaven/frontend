@@ -1,16 +1,19 @@
 import Route from '@ember/routing/route';
+import ENV from 'frontend/config/environment';
+import axios from 'axios';
 
 export default class IndexRoute extends Route {
   async model() {
-    try {
-      const response = await fetch('data.json');
-      if (!response.ok) {
-        throw new Error('Failed to fetch data.');
-      }
-      const { data } = await response.json();
-      return data;
-    } catch (err) {
-      console.log(err);
-    }
+    const { API_BASE_URL } = ENV.APP;
+    const requestUrl = new URL(`${API_BASE_URL}/books`);
+    requestUrl.searchParams.append('filter[include]', 'author');
+    const data = await axios
+      .get(requestUrl.toString())
+      .then((res) => res.data)
+      .catch((err) => {
+        console.error(err);
+        return null;
+      });
+    return data;
   }
 }

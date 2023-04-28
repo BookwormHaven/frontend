@@ -16,3 +16,24 @@
 .book-preview {
   background-color: $white;
 }
+
+// constrain title to one line with ellipsis
+.ellipsis {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: pre-wrap;
+
+  &-1 {
+    -webkit-line-clamp: 1;
+  }
+
+  &-3 {
+    -webkit-line-clamp: 3;
+  }
+}
+
+.text-error {
+  color: red;
+  font-weight: bold;
+}
