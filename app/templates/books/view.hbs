@@ -5,21 +5,21 @@
     <h3 class='mb-3'>Book Details</h3>
   </div>
 
-  {{#if @model}}
+  {{#if @model.data}}
     <div class='container mb-3 p-0'>
       <p>
-        <h4>{{@model.title}}</h4>
+        <h4>{{@model.data.title}}</h4>
       </p>
-      <p>By {{@model.author.name}}</p>
-      <p><span class='fw-bold'>Year: </span>{{@model.year}}</p>
+      <p>By {{@model.data.author.name}}</p>
+      <p><span class='fw-bold'>Year: </span>{{@model.data.year}}</p>
       <p>
         <span class='fw-bold'>
           Publisher:
         </span>
-        {{@model.publisher}}</p>
+        {{@model.data.publisher}}</p>
       <p class='fw-bold'>Author's Biography</p>
-      {{#if @model.author.biography}}
-        {{@model.author.biography}}
+      {{#if @model.data.author.biography}}
+        {{@model.data.author.biography}}
       {{else}}
         <span class='text-muted'>Biography not available.</span>
       {{/if}}
@@ -28,11 +28,13 @@
     <div class='container m-0 p-0'>
       <button
         class='btn btn-warning me-1'
+        type='button'
         {{on 'click' this.editBook}}
       >Edit</button>
       <button
         class='btn btn-danger'
-        {{on 'click' (fn this.deleteBook @model.id)}}
+        type='button'
+        {{on 'click' this.deleteBook}}
       >Delete</button>
     </div>
   {{else}}
