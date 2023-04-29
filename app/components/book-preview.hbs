@@ -1,10 +1,8 @@
 <li class='card book-preview'>
   <div class='card-body'>
-    <h5 class='card-title ellipsis ellipsis-1'>{{@title}}</h5>
-    <h6 class='card-subtitle mb-2 text-muted'>{{@author.name}}</h6>
-    <p class='card-text text-muted ellipsis ellipsis-3'>{{#if
-        @author.biography
-      }}{{@author.biography}}{{else}}Biography not available.{{/if}}
-    </p>
+    <LinkTo @route='books.view' @query={{hash id=@id}}>
+      <h5 class='card-title ellipsis ellipsis-2'>{{@title}}</h5>
+    </LinkTo>
+    <h6 class='card-subtitle mb-2 text-muted'>By {{@author.name}}</h6>
   </div>
 </li>
