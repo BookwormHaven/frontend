@@ -1,7 +1,6 @@
-# frontend
+# Bookworm Haven (Frontend)
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+Bookworm Haven is an online platform designed to facilitate the sharing and exchange of books among its members. It serves as a virtual community for book lovers where they can share their favorite books with others and discover new titles. We provides members with a user-friendly interface where they can browse a vast selection of books. Bookworm Haven is dedicated to promoting literacy and a love of reading, while also making it easy and convenient for members to access and share books online. 
 
 ## Prerequisites
 
@@ -40,6 +39,7 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Building
 
+* Set the `API_BASE_URL` environment variable for the API 
 * `ember build` (development)
 * `ember build --environment production` (production)
 
