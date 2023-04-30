@@ -10,6 +10,7 @@ Router.map(function () {
   this.route('books', function () {
     this.route('add');
     this.route('view');
+    this.route('edit');
   });
   this.route('not-found', { path: '/*' });
 });

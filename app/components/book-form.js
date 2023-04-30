@@ -7,13 +7,26 @@ import axios from 'axios';
 
 export default class BookFormComponent extends Component {
   @service router;
+  @service bookStorage;
   @tracked requireBiography = false;
   @tracked errorMessage = null;
   @tracked isLoading = false;
   authorId = -1;
 
-  get currentYear() {
-    return new Date().getFullYear();
+  @action initialYear(init) {
+    return init ? init : new Date().getFullYear();
+  }
+
+  /**
+   * Set the selected author to be the same as the book to be edited
+   * @param {number} editAuthorId author id of the book to be edited
+   */
+  @action updateSelected(editAuthorId) {
+    Array.from(document.querySelector('.form-select').children).forEach(
+      (option) => {
+        if (option.value === `${editAuthorId}`) option.selected = true;
+      }
+    );
   }
 
   @action updateBiographyStatus(event) {
@@ -54,6 +67,8 @@ export default class BookFormComponent extends Component {
 
     // send data
     const { API_BASE_URL } = ENV.APP;
+
+    // get new author id if new author is added
     if (isNewAuthor) {
       const { value: biography } = bookAuthorBio;
       const authorData = {
@@ -73,18 +88,33 @@ export default class BookFormComponent extends Component {
       this.authorId = Number(bookAuthorSelect.value);
     }
 
+    const isEdit = this.router.currentRouteName === 'books.edit';
+    const { id: currentId } = this.bookStorage.editData;
     const bookData = {
       title: bookTitle,
       publisher: bookPublisher,
       year: bookYear,
       authorId: this.authorId,
+      ...(isEdit && { id: currentId }),
     };
 
     this.isLoading = true;
-    await axios.post(`${API_BASE_URL}/books`, bookData).catch((err) => {
-      this.errorMessage = err.response.data.error.message;
-    });
+    if (isEdit) {
+      await axios
+        .put(`${API_BASE_URL}/books/${currentId}`, bookData)
+        .catch((err) => {
+          this.errorMessage = err.response.data.error.message;
+        });
+    } else {
+      await axios.post(`${API_BASE_URL}/books`, bookData).catch((err) => {
+        this.errorMessage = err.response.data.error.message;
+      });
+    }
     this.isLoading = false;
-    this.router.transitionTo('index');
+
+    // user is redirected if bookData POST/PUT succeeds
+    if (this.errorMessage === null) {
+      this.router.transitionTo('index');
+    }
   }
 }

@@ -13,6 +13,7 @@
       class='form-control'
       id='add-title'
       placeholder="Harry Potter and the Philosopher's Stone"
+      value={{@book.title}}
     />
   </div>
   <div class='mb-3'>
@@ -22,6 +23,7 @@
       class='form-control'
       id='add-publisher'
       placeholder='Bloomsbury'
+      value={{@book.publisher}}
     />
   </div>
 
@@ -30,9 +32,9 @@
     <input
       type='number'
       min='0'
-      max={{this.currentYear}}
+      max={{this.initialYear @book.year}}
       step='1'
-      value={{this.currentYear}}
+      value={{this.initialYear @book.year}}
       class='form-control'
       id='add-year'
     />
@@ -46,12 +48,13 @@
       id='add-author-select'
       {{on 'change' this.updateBiographyStatus}}
     >
-      <option value='x' selected>Select author</option>
+      <option value='x'>Select author</option>
       {{#each @authors as |author|}}
         <option value={{author.id}}>{{author.name}}</option>
       {{/each}}
       <option value='other'>Other</option>
     </select>
+    {{this.updateSelected @book.authorId}}
   </div>
 
   {{#if this.requireBiography}}
