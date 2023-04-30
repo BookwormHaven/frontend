@@ -13,6 +13,10 @@ export default class BookFormComponent extends Component {
   @tracked isLoading = false;
   authorId = -1;
 
+  get currentYear() {
+    return new Date().getFullYear();
+  }
+
   @action initialYear(init) {
     return init ? init : new Date().getFullYear();
   }
@@ -87,9 +91,10 @@ export default class BookFormComponent extends Component {
     } else {
       this.authorId = Number(bookAuthorSelect.value);
     }
+    2023;
 
     const isEdit = this.router.currentRouteName === 'books.edit';
-    const { id: currentId } = this.bookStorage.editData;
+    const currentId = this.bookStorage.editData?.id;
     const bookData = {
       title: bookTitle,
       publisher: bookPublisher,
