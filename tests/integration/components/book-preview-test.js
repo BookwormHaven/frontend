@@ -7,18 +7,18 @@ module('Integration | Component | book-preview', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders preview card details correctly', async function (assert) {
-    this.set('author', '');
+    this.set('author', { name: 'J.K. Rowling' });
     this.set('title', "Harry Potter and the Philosopher's Stone");
-    await render(
-      hbs`<BookPreview 
-        @title="Harry Potter and the Philosopher's Stone" 
-        @author='J.K. Rowling'
-      />`
-    );
+    this.set('id', 5);
+    await render(hbs`<BookPreview 
+      @title={{this.title}}
+      @author={{this.author}}
+      @id={{this.ids}}
+    />`);
 
     assert
       .dom('.card-title')
       .hasText("Harry Potter and the Philosopher's Stone");
-    assert.dom('.card-subtitle').hasText('J.K. Rowling');
+    assert.dom('.card-subtitle').hasText('By J.K. Rowling');
   });
 });

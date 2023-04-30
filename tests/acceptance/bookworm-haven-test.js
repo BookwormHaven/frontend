@@ -14,12 +14,23 @@ module('Acceptance | bookworm haven', function (hooks) {
     assert.dom('.navbar__link--add').hasText('Add a book');
 
     await click('.navbar__link--add');
-    assert.strictEqual(currentURL(), '/add-book');
+    assert.strictEqual(currentURL(), '/books/add');
 
     await click('.navbar__link--brand');
     assert.strictEqual(currentURL(), '/');
 
     await click('.navbar__link--index');
     assert.strictEqual(currentURL(), '/');
+  });
+
+  test('redirects /books to home', async function (assert) {
+    await visit('/books');
+    await Promise.resolve(setTimeout(() => {}, 50));
+    assert.strictEqual(currentURL(), '/');
+  });
+
+  test('displays 404 page', async function (assert) {
+    await visit('/invalid');
+    assert.dom('h3').hasText('Page not found');
   });
 });
